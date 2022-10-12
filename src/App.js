@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-//import BarChart from './BarChart';
+
 //import { BrowserRouter,  Route } from 'react-router-dom'
 
 import Data from './Data'
-import { VictoryChart, VictoryLine, VictoryTheme } from 'victory';
+import { VictoryChart, VictoryTheme, VictoryLine  } from 'victory';
 
 
 function App() {
@@ -32,4 +32,5 @@ function App() {
 }
 
 
-export default App;
+ export default App;
+
