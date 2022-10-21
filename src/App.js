@@ -1,4 +1,4 @@
-// 
+//  
 
 import "./App.css";
 import { useState } from "react";
@@ -12,36 +12,62 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ChartIndividualStudent from "./Components/ChartIndividualStudent";
 
 
-function App() {
-const [data] = useState(Data)
-const allNames = data.map(students=> students.name)
-// weergave naam van student?
-const studentNames =[new Set(allNames)].map((name, index) => {
 
-return {
-    name: name,
-    id: index + 1
-}
+function App() {
+   const [data] = useState(Data)
+   const allstudentNames = data.map(students => students.name)
+   const studentNames = [...new Set(allstudentNames)].map((name, index) => {
+      return {
+         name: name,
+         id: index + 1
+      }
 })
 
+//.map/reduce & weergave van enkele gegeven
+const Data = Object.values(data.reduce((acc, { assignment, difficulty, fun }) => { 
+   acc[assignment] = acc[assignment] || { assignment, difficulty: 0, fun: 0, students: 0 };
+   acc[assignment].difficulty += difficulty;
+   acc[assignment].fun += fun;
+   acc[assignment].participants++;
+   return acc;
+}, []))
 
-const allData = Object.values(data.reduce(({assignment, difficulty, fun}) => {
-    return studentNames.name
-    //nieuwe status declaratie en weergave?
-    <BrowserRouter>
-    <div className="container">
-        <Header />
-        <Footer />
-        <Routes>
-            <Route path='Data' element={<Data />} />
-            <Route path='Data/:studentName' element={<Student />} />
-            <Route path='/' element={BarChart} data={averageData}/>
-
-        </Routes>
-        </div>
-        </BrowserRouter>
-
-
+// Gemiddelde per student
+const averageData = Data.map(( {assignment, students, difficulty, fun}) => {
+return {
+   assignment, students, 
+   difficulty: difficulty / students,
+   fun: fun / students
 }
+});
 
-export default App;
+return (
+   <div>
+      <Header />
+      <BrowserRouter>
+      <Routes>
+         <Route path='/' element={
+            <div className="main-path">
+               <BarChart data={averageData} />
+               <StudentFilter studentNames={studentNames}/>
+               <LineChart data={averageData}/>
+               </div>
+         }
+         />
+         <Route
+         path='/student/:name' element={
+            <div>
+            <ChartIndividualStudent data ={data}/>
+            </div>
+         }
+         />
+             </Routes>
+               </BrowserRouter>
+               <Footer/>
+               </div>
+)       
+         }
+      
+                
+
+export default App

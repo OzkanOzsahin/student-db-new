@@ -6,18 +6,18 @@ from "victory";
 import { useParams } from "react-router-dom";
 
 
-function ChartIndividualStudent({data}) {
+function ChartIndividualStudent ({Data}) {
 
     //Naam als parameter?
     const { name } = useParams();
     //Individuele data weergave
-    const individualStudentsData = data.filter(student => {
+    const individualStudentsData = Data.filter(student => {
     // Return hier om data te weergeven
     return student.name === name })
 
     // Hier de variabele uit de mockdata
     const data = individualStudentsData.map(student => ({
-        assignment: student. assignment,
+        assignment: student.assignment,
         difficulty: student.difficulty,
         fun: student.fun,
         label: 
@@ -47,7 +47,7 @@ function ChartIndividualStudent({data}) {
         ]}
         />
 
-       //tekst opmaak??
+       
 
         <VictoryLabel
         x={50}
