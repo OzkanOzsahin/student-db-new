@@ -115,9 +115,4 @@ import {
   }
 
     
-  
-
-
-
-
-    export default BarChart
+   export default BarChart

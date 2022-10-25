@@ -1,7 +1,6 @@
 //  
-
 import "./App.css";
-import { useState } from "react";
+import React, { useState} from 'react';
 import BarChart from "./Components/Barchart";
 import Data from "./Data";
 import StudentFilter from "./Components/StudentFilter";
@@ -12,20 +11,22 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ChartIndividualStudent from "./Components/ChartIndividualStudent";
 
 
-
+console.log(Data)
+//data.products.map()
 function App() {
-   const [data] = useState(Data)
+   const [data]  = useState(Data)
    const allstudentNames = data.map(students => students.name)
-   const studentNames = [...new Set(allstudentNames)].map((name, index) => {
+   const studentNames = [...new Set(allstudentNames)].map((name, index)=> {
+
       return {
          name: name,
          id: index + 1
       }
 })
 
-//.map/reduce & weergave van enkele gegeven
-const Data = Object.values(data.reduce((acc, { assignment, difficulty, fun }) => { 
-   acc[assignment] = acc[assignment] || { assignment, difficulty: 0, fun: 0, students: 0 };
+//.map/reduce & weergave van enkele gegeven vanuit bundel van data?
+   const assignmentsData = Object.values(Data.reduce((acc, { assignment, difficulty, fun }) => { 
+   acc[assignment] = acc[assignment] || { assignment, difficulty: 0, fun: 0, student: 0 };
    acc[assignment].difficulty += difficulty;
    acc[assignment].fun += fun;
    acc[assignment].participants++;
@@ -33,7 +34,7 @@ const Data = Object.values(data.reduce((acc, { assignment, difficulty, fun }) =>
 }, []))
 
 // Gemiddelde per student
-const averageData = Data.map(( {assignment, students, difficulty, fun}) => {
+const averageData = assignmentsData.map(( {assignment, students, difficulty, fun}) => {
 return {
    assignment, students, 
    difficulty: difficulty / students,
@@ -41,9 +42,13 @@ return {
 }
 });
 
+
+
+
 return (
    <div>
       <Header />
+      
       <BrowserRouter>
       <Routes>
          <Route path='/' element={
@@ -57,7 +62,7 @@ return (
          <Route
          path='/student/:name' element={
             <div>
-            <ChartIndividualStudent data ={data}/>
+            <ChartIndividualStudent data ={Data}/>
             </div>
          }
          />
@@ -65,6 +70,7 @@ return (
                </BrowserRouter>
                <Footer/>
                </div>
+               
 )       
          }
       
