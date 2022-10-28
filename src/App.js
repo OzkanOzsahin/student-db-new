@@ -1,7 +1,7 @@
 //  
 import "./App.css";
-import React, { useState} from 'react';
-import BarChart from "./Components/Barchart";
+import { useState} from 'react';
+import BarChart from "./Components/BarChart";
 import Data from "./Data";
 import StudentFilter from "./Components/StudentFilter";
 import LineChart from "./Components/LineChart";
@@ -11,8 +11,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ChartIndividualStudent from "./Components/ChartIndividualStudent";
 
 
-console.log(Data)
-//data.products.map()
+
+//data.products.map()??
 function App() {
    const [data]  = useState(Data)
    const allstudentNames = data.map(students => students.name)
@@ -42,7 +42,12 @@ return {
 }
 });
 
-
+console.log(
+   averageData.filter(({ difficulty, fun }) => {
+     const check = (n) => Number.isNaN() || n === 0;
+     return check(difficulty) || check(fun);
+   })
+ );
 
 
 return (

@@ -14,7 +14,7 @@ function LineChart ( {data}) {
             domain={{x:[0, 50]}}
             domainPadding={20}
             containerComponent={
-                <VictoryContainer width={700} height={250}/>
+            <VictoryContainer width={700} height={250}/>
             }
             >
                 <VictoryLegend
@@ -37,8 +37,8 @@ function LineChart ( {data}) {
      style= {{data: { stroke: "orange"}
 }}
 data={data}
-x="assignment"
-y="difficulty"
+x='assignment'
+y='difficulty'
 />
 <VictoryLabel
 x={50}

@@ -1,14 +1,14 @@
 import React from "react";
-import Students from "./Students"
+import Students from "./Students";
 
 
 //Filteren uit Data--enkele data waarde
 // 1-aanmaken functie 2-schrijven variable met .map
 function StudentFilter ( {studentNames} ) {
-    const studentList = studentNames.map((Student) =>
-    <students
-    name={Students.name}
-    key={Students.id}
+    const studentList = studentNames.map((student) =>
+    <Students
+    name={student.name}
+    key={student.id}
     />
     )
 

@@ -21,38 +21,37 @@ import {
       difficulty: values.difficulty,
       fun: values.fun,
       label: 
-        `Assignment ${values.assignment}, 
-         difficulty: ${values.difficulty.toFixed(1)},
+        `assignment ${values.assignment}, 
+         'difficulty: ${values.difficulty.toFixed(1)},
          fun: ${values.fun.toFixed(1)}`
    
     }))
     return (
       <div className="bar-chart">
        <h1>Gemiddelde resultaten alle studenten</h1>
-        <VictoryChart>
+        <VictoryChart
           theme={VictoryTheme.material}
-          width={750}
-          height={250}
-          domain={{x: [0, 60]}}
-
-
+          width={720}
+          height={200}
+          domain={{x: [0, 55]}}
           containerComponent={
           <VictoryContainer width={700} height={250} />
           }
-        
+        >
           <VictoryLegend
+          
             x={550}
             y={24}
             itemsPerRow={2}
             orientation="horizontal"
             data={[
-                { name: "Fun", symbol: { fill: "red", type: "square" } },
+                { name: 'Fun', symbol: { fill: "red", type: "square" } },
                 { name: "Difficulty", symbol: { fill: "yellow", type: "square" } },
             ]}
           />
           <VictoryLabel
             x={50}
-            y={185}
+            y={180}
             text="Assignment"
             style={[{ fill: "black", fontSize: 10}]}
           />
@@ -78,9 +77,11 @@ import {
         
             <VictoryAxis
             style={{
-            
-            y:[0, 5]
+            ticks: {stroke: "grey", size: 2 },
+            tickLabels: { fontSize: 7, padding: 3 },
             }}
+            // y:[0, 5]
+            
             dependentAxis
           />
             
