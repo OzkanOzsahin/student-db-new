@@ -26,10 +26,10 @@ function App() {
 
 //.map/reduce & weergave van enkele gegeven vanuit bundel van data?
    const assignmentsData = Object.values(Data.reduce((acc, { assignment, difficulty, fun }) => { 
-   acc[assignment] = acc[assignment] || { assignment, difficulty: 0, fun: 0, student: 0 };
+   acc[assignment] = acc[assignment] || { assignment, difficulty: 0, fun: 0, students: 0 };
    acc[assignment].difficulty += difficulty;
    acc[assignment].fun += fun;
-   acc[assignment].participants++;
+   acc[assignment].students++;
    return acc;
 }, []))
 
